@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Troubles Dys</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot Diagnostic Troubles Dys</h1>
+        <div id="login-form">
+            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button onclick="login()">Se connecter</button>
+            <p id="login-error"></p>
+        </div>
+        <div id="app" style="display:none;">
+            <textarea id="difficulties" placeholder="Décrivez vos difficultés..." rows="4" cols="50"></textarea>
+            <button onclick="diagnoseText()">Analyser</button>
+            <div id="result"></div>
+            <button onclick="useVoice()">Activer la reconnaissance vocale</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,132 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plateforme Dys - Accueil conviviale</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@0.1.1/open-dyslexic.css" />
+  <title>Diagnostic Troubles Dys</title>
   <style>
     body {
-      font-family: 'OpenDyslexic', Arial, sans-serif;
-      background-color: #f2f7ff;
-      margin: 0;
-      padding: 0;
-      color: #222;
-      line-height: 1.6;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 20px;
     }
-
-    header {
-      background-color: #4a90e2;
-      color: white;
-      padding: 30px 20px;
+    h1 {
+      color: #4a90e2;
       text-align: center;
     }
-
-    header h1 {
-      font-size: 2em;
-      margin: 0;
+    .question {
+      margin: 20px 0;
     }
-
-    main {
-      padding: 30px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: #2c3e50;
-    }
-
-    .read-button {
-      background-color: #ffb703;
-      color: black;
+    button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px;
       border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 1em;
     }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      margin-top: 10px;
-    }
-
-    .icon {
-      font-size: 1.3em;
-      margin-right: 6px;
-    }
-
-    footer {
-      background-color: #4a90e2;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+    button:hover {
+      background-color: #357ab7;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Bienvenue sur la plateforme Dys</h1>
-    <p>Un espace accessible pour comprendre les troubles d'apprentissage</p>
-  </header>
+  <h1>Diagnostic des Troubles Dys</h1>
+  <p>Répondez aux questions ci-dessous pour évaluer si vous présentez des symptômes d'un trouble dys.</p>
 
-  <main>
-    <section>
-      <h2><span class="icon">📘</span>À propos</h2>
-      <p>
-        Les troubles Dys touchent la lecture (dyslexie), l'écriture (dysorthographie), le calcul (dyscalculie), la coordination (dyspraxie) et la communication (dysphasie).
-      </p>
-      <p>
-        Cette plateforme vous propose des ressources simples, visuelles et accessibles pour mieux les comprendre.
-      </p>
-      <button class="read-button" onclick="lireTexte('intro')">📢 Lire ce texte</button>
-      <div id="intro" style="display:none;">
-        Les troubles Dys touchent la lecture, l'écriture, le calcul, la coordination et la communication. Cette plateforme vous propose des ressources simples pour mieux les comprendre.
-      </div>
-    </section>
+  <div class="question">
+    <h3>1. Avez-vous des difficultés à lire rapidement et à comprendre ce que vous lisez ?</h3>
+    <button onclick="nextQuestion(1)">Oui</button>
+    <button onclick="nextQuestion(0)">Non</button>
+  </div>
 
-    <section>
-      <h2><span class="icon">🧠</span>Exemple visuel - Dyslexie</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dyslexia_example.svg/800px-Dyslexia_example.svg.png"
-           alt="Exemple de perception dyslexique" />
-      <p>
-        Ce texte montre ce que peut voir une personne dyslexique. Les lettres semblent se déplacer ou se mélanger, ce qui rend la lecture difficile.
-      </p>
-    </section>
+  <div class="question">
+    <h3>2. Avez-vous du mal à faire des calculs mentaux simples (ex: 7 + 3) ?</h3>
+    <button onclick="nextQuestion(1)">Oui</button>
+    <button onclick="nextQuestion(0)">Non</button>
+  </div>
 
-    <section>
-      <h2><span class="icon">🛠️</span>Conseils pour mieux accompagner</h2>
-      <ul>
-        <li>🧩 Utiliser des polices lisibles (comme ici !)</li>
-        <li>📄 Aérer les textes, utiliser des listes et des images</li>
-        <li>🎧 Proposer une lecture audio</li>
-        <li>🖍️ Adapter les supports aux besoins spécifiques</li>
-      </ul>
-    </section>
-  </main>
+  <div class="question">
+    <h3>3. Avez-vous des difficultés à écrire correctement (orthographe, grammaire) ?</h3>
+    <button onclick="nextQuestion(1)">Oui</button>
+    <button onclick="nextQuestion(0)">Non</button>
+  </div>
 
-  <footer>
-    &copy; 2025 Plateforme Dys - Tous droits réservés
-  </footer>
+  <div id="result" style="display:none; text-align: center;">
+    <h3>Résultats de votre diagnostic :</h3>
+    <p id="recommendations"></p>
+  </div>
 
   <script>
-    function lireTexte(id) {
-      const texte = document.getElementById(id).innerText;
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(texte);
-      utterance.lang = 'fr-FR';
-      synth.speak(utterance);
+    let score = 0;
+
+    function nextQuestion(answer) {
+      score += answer;
+      if (score === 3) {
+        document.getElementById("result").style.display = "block";
+        document.getElementById("recommendations").innerHTML = "Il semble que vous présentez des symptômes de troubles dys. Il est recommandé de consulter un professionnel pour un diagnostic approfondi.";
+      } else if (score >= 1) {
+        document.getElementById("result").style.display = "block";
+        document.getElementById("recommendations").innerHTML = "Il est possible que vous ayez quelques difficultés liées aux troubles dys. Pensez à en parler à un spécialiste.";
+      } else {
+        document.getElementById("result").style.display = "block";
+        document.getElementById("recommendations").innerHTML = "Il semble que vous n'ayez pas de symptômes importants liés aux troubles dys. Toutefois, si vous ressentez des difficultés, n'hésitez pas à consulter.";
+      }
     }
   </script>
+
 </body>
 </html>

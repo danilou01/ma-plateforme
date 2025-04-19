@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostic des Troubles Neurodéveloppementaux</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #4a90e2;
+      text-align: center;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #357ab7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Diagnostic des Troubles Neurodéveloppementaux</h1>
+  <p>Répondez aux questions ci-dessous pour évaluer si vous présentez des symptômes de troubles neurodéveloppementaux.</p>
+
+  <!-- Première question générale -->
+  <div class="question" id="questionnaire_general">
+    <h3>1. Avez-vous des difficultés dans l'un des domaines suivants ?</h3>
+    <ul>
+      <li><button onclick="nextStep('TDAH')">Difficultés de concentration (TDAH)</button></li>
+      <li><button onclick="nextStep('Dyslexie')">Difficultés à lire (Dyslexie)</button></li>
+      <li><button onclick="nextStep('Dyscalculie')">Difficultés avec les mathématiques (Dyscalculie)</button></li>
+      <li><button onclick="nextStep('TSA')">Difficultés sociales ou comportementales (Autisme/TSA)</button></li>
+      <li><button onclick="nextStep('Dysphasie')">Difficultés avec le langage (Dysphasie)</button></li>
+    </ul>
+  </div>
+
+  <!-- TDAH -->
+  <div class="question" id="TDAH" style="display:none;">
+    <h3>2. Avez-vous des difficultés à vous concentrer sur des tâches pendant une période prolongée ?</h3>
+    <button onclick="nextStep('TDAH_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('TDAH_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TDAH_symptome_1" style="display:none;">
+    <h3>3. Avez-vous tendance à oublier des tâches quotidiennes importantes (par exemple, des rendez-vous) ?</h3>
+    <button onclick="nextStep('TDAH_symptome_2', 1)">Oui</button>
+    <button onclick="nextStep('TDAH_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TDAH_symptome_2" style="display:none;">
+    <h3>4. Êtes-vous souvent distrait par des détails non pertinents lorsque vous effectuez une tâche ?</h3>
+    <button onclick="nextStep('TDAH_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('TDAH_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TDAH_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à terminer des tâches que vous avez commencées ?</h3>
+    <button onclick="nextStep('Dyslexie', 0)">Non</button>
+    <button onclick="nextStep('Dyslexie', 1)">Oui</button>
+  </div>
+
+  <!-- Dyslexie -->
+  <div class="question" id="Dyslexie" style="display:none;">
+    <h3>2. Avez-vous des difficultés à lire rapidement et à comprendre ce que vous lisez ?</h3>
+    <button onclick="nextStep('Dyslexie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dyslexie_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyslexie_symptome_1" style="display:none;">
+    <h3>3. Avez-vous tendance à inverser des lettres ou des mots lors de la lecture ?</h3>
+    <button onclick="nextStep('Dyslexie_symptome_2', 1)">Oui</button>
+    <button onclick="nextStep('Dyslexie_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyslexie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre le sens des mots que vous lisez ?</h3>
+    <button onclick="nextStep('Dyslexie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dyslexie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyslexie_symptome_3" style="display:none;">
+    <h3>5. Est-il plus difficile pour vous d'apprendre à lire que pour d'autres personnes ?</h3>
+    <button onclick="nextStep('Dyscalculie', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie', 0)">Non</button>
+  </div>
+
+  <!-- Dyscalculie -->
+  <div class="question" id="Dyscalculie" style="display:none;">
+    <h3>2. Avez-vous des difficultés avec les mathématiques ?</h3>
+    <button onclick="nextStep('Dyscalculie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyscalculie_symptome_1" style="display:none;">
+    <h3>3. Avez-vous des difficultés à comprendre des concepts mathématiques de base, comme l'addition et la soustraction ?</h3>
+    <button onclick="nextStep('Dyscalculie_symptome_2', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyscalculie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à mémoriser les tables de multiplication ?</h3>
+    <button onclick="nextStep('Dyscalculie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyscalculie_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à effectuer des calculs rapidement et avec précision ?</h3>
+    <button onclick="nextStep('TSA', 1)">Oui</button>
+    <button onclick="nextStep('TSA', 0)">Non</button>
+  </div>
+
+  <!-- TSA -->
+  <div class="question" id="TSA" style="display:none;">
+    <h3>2. Avez-vous des difficultés à comprendre les règles sociales ou les attentes comportementales ?</h3>
+    <button onclick="nextStep('TSA_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('TSA_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TSA_symptome_1" style="display:none;">
+    <h3>3. Avez-vous des intérêts ou des comportements très limités ou répétitifs ?</h3>
+    <button onclick="nextStep('TSA_symptome_2', 1)">Oui</button>
+    <button onclick="nextStep('TSA_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TSA_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre ou à utiliser le langage non verbal (gestes, expressions faciales) ?</h3>
+    <button onclick="nextStep('Dysphasie', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie', 0)">Non</button>
+  </div>
+
+  <!-- Dysphasie -->
+  <div class="question" id="Dysphasie" style="display:none;">
+    <h3>2. Avez-vous des difficultés à comprendre ou à exprimer des mots ou des phrases ?</h3>
+    <button onclick="nextStep('Dysphasie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dysphasie_symptome_1" style="display:none;">
+    <h3>3. Avez-vous des difficultés à organiser vos idées en parlant ?</h3>
+    <button onclick="nextStep('Dysphasie_symptome_2', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dysphasie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre des mots ou des phrases dans des conversations ?</h3>
+    <button onclick="nextStep('Dysphasie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dysphasie_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à trouver les mots justes en parlant ?</h3>
+    <button onclick="nextStep('result', 1)">Oui</button>
+    <button onclick="nextStep('result', 0)">Non</button>
+  </div>
+
+  <!-- Résultats -->
+  <div id="result" style="display:none; text-align: center;">
+    <h3>Résultats de votre diagnostic :</h3>
+    <p id="recommendations"></p>
+    <div id="professional-links">
+      <h4>Consultez un professionnel de santé adapté :</h4>
+      <ul>
+        <li><a href="https://www.dyslexia-france.org" target="_blank">Dyslexie : Association Dyslexia France</a></li>
+        <li><a href="https://www.autisme.fr" target="_blank">Autisme / TSA : Fédération Autisme France</a></li>
+        <li><a href="https://www.sfdh.org" target="_blank">TDAH : Société Française de l'Hypnose et du TDAH</a></li>
+        <li><a href="https://www.sfdsy.org" target="_blank">Dyscalculie : Société Française de Dyscalculie</a></li>
+        <li><a href="https://www.dysphasie.org" target="_blank">Dysphasie : Association Dysphasie France</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Variable pour suivre les réponses et le progrès
+    let answers = {
+      TDAH: 0,
+      Dyslexie: 0,
+      Dyscalculie: 0,
+      TSA: 0,
+      Dysphasie: 0
+    };
+
+    // Fonction pour passer à la question suivante
+    function nextStep(step, answer = null) {
+      if (answer !== null) {
+        answers[step] = answer;
+      }
+
+      // Masquer toutes les questions
+      const allQuestions = document.querySelectorAll('.question');
+      allQuestions.forEach((el) => {
+        el.style.display = 'none';
+      });
+
+      // Afficher la question suivante ou les résultats
+      if (step === 'result') {
+        displayResults();
+      } else {
+        document.getElementById(step).style.display = 'block';
+      }
+    }
+
+    // Fonction pour afficher les résultats
+    function displayResults() {
+      let recommendations = "Merci d'avoir répondu. Vous présentez des signes de troubles neurodéveloppementaux. ";
+      if (answers.TDAH > 1) {
+        recommendations += "Des symptômes de TDAH ont été détectés. ";
+      }
+      if (answers.Dyslexie > 1) {
+        recommendations += "Des symptômes de dyslexie ont été détectés. ";
+      }
+      if (answers.Dyscalculie > 1) {
+        recommendations += "Des symptômes de dyscalculie ont été détectés. ";
+      }
+      if (answers.TSA > 1) {
+        recommendations += "Des symptômes d'autisme (TSA) ont été détectés. ";
+      }
+      if (answers.Dysphasie > 1) {
+        recommendations += "Des symptômes de dysphasie ont été détectés. ";
+      }
+
+      document.getElementById('recommendations').innerText = recommendations;
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

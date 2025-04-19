@@ -49,7 +49,6 @@
     </ul>
   </div>
 
-  <!-- Étapes spécifiques pour chaque trouble -->
   <!-- TDAH -->
   <div class="question" id="TDAH" style="display:none;">
     <h3>2. Avez-vous des difficultés à vous concentrer sur des tâches pendant une période prolongée ?</h3>
@@ -61,6 +60,18 @@
     <h3>3. Avez-vous tendance à oublier des tâches quotidiennes importantes (par exemple, des rendez-vous) ?</h3>
     <button onclick="nextStep('TDAH_symptome_2', 1)">Oui</button>
     <button onclick="nextStep('TDAH_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TDAH_symptome_2" style="display:none;">
+    <h3>4. Êtes-vous souvent distrait par des détails non pertinents lorsque vous effectuez une tâche ?</h3>
+    <button onclick="nextStep('TDAH_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('TDAH_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TDAH_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à terminer des tâches que vous avez commencées ?</h3>
+    <button onclick="nextStep('Dyslexie', 0)">Non</button>
+    <button onclick="nextStep('Dyslexie', 1)">Oui</button>
   </div>
 
   <!-- Dyslexie -->
@@ -76,6 +87,18 @@
     <button onclick="nextStep('Dyslexie_symptome_2', 0)">Non</button>
   </div>
 
+  <div class="question" id="Dyslexie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre le sens des mots que vous lisez ?</h3>
+    <button onclick="nextStep('Dyslexie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dyslexie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyslexie_symptome_3" style="display:none;">
+    <h3>5. Est-il plus difficile pour vous d'apprendre à lire que pour d'autres personnes ?</h3>
+    <button onclick="nextStep('Dyscalculie', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie', 0)">Non</button>
+  </div>
+
   <!-- Dyscalculie -->
   <div class="question" id="Dyscalculie" style="display:none;">
     <h3>2. Avez-vous des difficultés avec les mathématiques ?</h3>
@@ -84,22 +107,40 @@
   </div>
 
   <div class="question" id="Dyscalculie_symptome_1" style="display:none;">
-    <h3>3. Avez-vous des difficultés à mémoriser les tables de multiplication ?</h3>
+    <h3>3. Avez-vous des difficultés à comprendre des concepts mathématiques de base, comme l'addition et la soustraction ?</h3>
     <button onclick="nextStep('Dyscalculie_symptome_2', 1)">Oui</button>
     <button onclick="nextStep('Dyscalculie_symptome_2', 0)">Non</button>
   </div>
 
+  <div class="question" id="Dyscalculie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à mémoriser les tables de multiplication ?</h3>
+    <button onclick="nextStep('Dyscalculie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dyscalculie_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à effectuer des calculs rapidement et avec précision ?</h3>
+    <button onclick="nextStep('TSA', 1)">Oui</button>
+    <button onclick="nextStep('TSA', 0)">Non</button>
+  </div>
+
   <!-- TSA -->
   <div class="question" id="TSA" style="display:none;">
-    <h3>2. Avez-vous des difficultés sociales ou comportementales ?</h3>
+    <h3>2. Avez-vous des difficultés à comprendre les règles sociales ou les attentes comportementales ?</h3>
     <button onclick="nextStep('TSA_symptome_1', 1)">Oui</button>
     <button onclick="nextStep('TSA_symptome_1', 0)">Non</button>
   </div>
 
   <div class="question" id="TSA_symptome_1" style="display:none;">
-    <h3>3. Avez-vous des difficultés à comprendre les expressions faciales ou les émotions des autres ?</h3>
+    <h3>3. Avez-vous des intérêts ou des comportements très limités ou répétitifs ?</h3>
     <button onclick="nextStep('TSA_symptome_2', 1)">Oui</button>
     <button onclick="nextStep('TSA_symptome_2', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TSA_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre ou à utiliser le langage non verbal (gestes, expressions faciales) ?</h3>
+    <button onclick="nextStep('Dysphasie', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie', 0)">Non</button>
   </div>
 
   <!-- Dysphasie -->
@@ -115,7 +156,19 @@
     <button onclick="nextStep('Dysphasie_symptome_2', 0)">Non</button>
   </div>
 
-  <!-- Résultats et redirection -->
+  <div class="question" id="Dysphasie_symptome_2" style="display:none;">
+    <h3>4. Avez-vous des difficultés à comprendre des mots ou des phrases dans des conversations ?</h3>
+    <button onclick="nextStep('Dysphasie_symptome_3', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie_symptome_3', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dysphasie_symptome_3" style="display:none;">
+    <h3>5. Avez-vous des difficultés à trouver les mots justes en parlant ?</h3>
+    <button onclick="nextStep('result', 1)">Oui</button>
+    <button onclick="nextStep('result', 0)">Non</button>
+  </div>
+
+  <!-- Résultats -->
   <div id="result" style="display:none; text-align: center;">
     <h3>Résultats de votre diagnostic :</h3>
     <p id="recommendations"></p>

@@ -37,64 +37,58 @@
   <h1>Diagnostic des Troubles Neurodéveloppementaux</h1>
   <p>Répondez aux questions ci-dessous pour évaluer si vous présentez des symptômes de troubles neurodéveloppementaux.</p>
 
-  <div class="question">
-    <h3>1. Avez-vous des difficultés à comprendre les émotions des autres ?</h3>
-    <button onclick="nextQuestion('TSA', 1)">Oui</button>
-    <button onclick="nextQuestion('TSA', 0)">Non</button>
+  <!-- Étape 1 : Questions générales -->
+  <div class="question" id="questionnaire_general">
+    <h3>1. Avez-vous des difficultés dans les domaines suivants ?</h3>
+    <ul>
+      <li><button onclick="nextStep('TDAH')">Difficultés de concentration (TDAH)</button></li>
+      <li><button onclick="nextStep('Dyslexie')">Difficultés à lire (Dyslexie)</button></li>
+    </ul>
   </div>
 
-  <div class="question">
-    <h3>2. Avez-vous des difficultés à lire des mots simples ?</h3>
-    <button onclick="nextQuestion('Dyslexie', 1)">Oui</button>
-    <button onclick="nextQuestion('Dyslexie', 0)">Non</button>
+  <!-- Étape 2 : TDAH - Questions spécifiques -->
+  <div class="question" id="TDAH" style="display:none;">
+    <h3>2. Avez-vous des difficultés à vous concentrer sur des tâches pendant une période prolongée ?</h3>
+    <button onclick="nextStep('TDAH_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('TDAH_symptome_1', 0)">Non</button>
   </div>
 
-  <div class="question">
-    <h3>3. Avez-vous des difficultés avec les calculs mathématiques ?</h3>
-    <button onclick="nextQuestion('Dyscalculie', 1)">Oui</button>
-    <button onclick="nextQuestion('Dyscalculie', 0)">Non</button>
+  <div class="question" id="TDAH_symptome_1" style="display:none;">
+    <h3>3. Oubliez-vous souvent des tâches quotidiennes importantes (par exemple, des rendez-vous, des appels téléphoniques) ?</h3>
+    <button onclick="nextStep('result', 1)">Oui</button>
+    <button onclick="nextStep('result', 0)">Non</button>
   </div>
 
-  <div class="question">
-    <h3>4. Avez-vous des difficultés à épeler des mots ?</h3>
-    <button onclick="nextQuestion('Dysorthographie', 1)">Oui</button>
-    <button onclick="nextQuestion('Dysorthographie', 0)">Non</button>
+  <!-- Étape 2 : Dyslexie - Questions spécifiques -->
+  <div class="question" id="Dyslexie" style="display:none;">
+    <h3>2. Avez-vous des difficultés à lire rapidement et comprendre ce que vous lisez ?</h3>
+    <button onclick="nextStep('Dyslexie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dyslexie_symptome_1', 0)">Non</button>
   </div>
 
-  <div class="question">
-    <h3>5. Avez-vous du mal à vous concentrer dans des situations importantes ?</h3>
-    <button onclick="nextQuestion('TDAH', 1)">Oui</button>
-    <button onclick="nextQuestion('TDAH', 0)">Non</button>
+  <div class="question" id="Dyslexie_symptome_1" style="display:none;">
+    <h3>3. Avez-vous tendance à inverser les lettres ou les mots lors de la lecture ?</h3>
+    <button onclick="nextStep('result', 1)">Oui</button>
+    <button onclick="nextStep('result', 0)">Non</button>
   </div>
 
-  <div class="question">
-    <h3>6. Avez-vous des difficultés à comprendre des consignes longues ?</h3>
-    <button onclick="nextQuestion('Dysphasie', 1)">Oui</button>
-    <button onclick="nextQuestion('Dysphasie', 0)">Non</button>
-  </div>
-
+  <!-- Résultats -->
   <div id="result" style="display:none; text-align: center;">
     <h3>Résultats de votre diagnostic :</h3>
     <p id="recommendations"></p>
   </div>
 
   <script>
-    let score = {
-      TSA: 0,
-      Dyslexie: 0,
-      Dyscalculie: 0,
-      Dysorthographie: 0,
-      TDAH: 0,
-      Dysphasie: 0
-    };
+    let score = {TDAH: 0, Dyslexie: 0};
 
-    function nextQuestion(trouble, answer) {
-      score[trouble] += answer;
-
-      // Afficher les résultats à la fin
-      if (Object.values(score).every(value => value > 0)) {
+    function nextStep(step, answer) {
+      if (answer === 1) score[step] = 1;
+      document.getElementById(step).style.display = "none";
+      if (step === 'result') {
+        document.getElementById("recommendations").innerHTML = "Il est recommandé de consulter un spécialiste pour un diagnostic approfondi.";
         document.getElementById("result").style.display = "block";
-        document.getElementById("recommendations").innerHTML = "Il est possible que vous présentiez plusieurs symptômes de troubles neurodéveloppementaux. Il est conseillé de consulter un professionnel de la santé pour un diagnostic complet.";
+      } else {
+        document.getElementById(step).style.display = "block";
       }
     }
   </script>

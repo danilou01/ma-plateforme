@@ -1,24 +1,3 @@
-<!-- Résultats personnalisés et recommandations -->
-<div id="result" style="display:none; text-align: center;">
-  <h3>Résultats de votre diagnostic :</h3>
-  <p id="recommendations"></p>
-  <div id="professional-links">
-    <h4>Consultez un professionnel de santé adapté :</h4>
-    <ul>
-      <li><a href="https://www.dyslexia-france.org" target="_blank">Dyslexie : Association Dyslexia France</a></li>
-      <li><a href="https://www.autisme.fr" target="_blank">Autisme / TSA : Fédération Autisme France</a></li>
-      <li><a href="https://www.sfdh.org" target="_blank">TDAH : Société Française de l'Hypnose et du TDAH</a></li>
-      <li><a href="https://www.sfdsy.org" target="_blank">Dyscalculie : Société Française de Dyscalculie</a></li>
-      <li><a href="https://www.dysphasie.org" target="_blank">Dysphasie : Association Dysphasie France</a></li>
-    </ul>
-  </div>
-</div>
-Code complet HTML pour un questionnaire à plusieurs niveaux avec redirection
-Voici un exemple complet, où nous avons intégré la logique de redirection vers des professionnels de santé en fonction des troubles détectés.
-
-html
-Copier
-Modifier
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -83,6 +62,24 @@ Modifier
     <button onclick="nextStep('Dyslexie_symptome_1', 0)">Non</button>
   </div>
 
+  <div class="question" id="Dyscalculie" style="display:none;">
+    <h3>2. Avez-vous des difficultés avec les mathématiques ?</h3>
+    <button onclick="nextStep('Dyscalculie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dyscalculie_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="TSA" style="display:none;">
+    <h3>2. Avez-vous des difficultés sociales ou comportementales ?</h3>
+    <button onclick="nextStep('TSA_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('TSA_symptome_1', 0)">Non</button>
+  </div>
+
+  <div class="question" id="Dysphasie" style="display:none;">
+    <h3>2. Avez-vous des difficultés avec le langage ?</h3>
+    <button onclick="nextStep('Dysphasie_symptome_1', 1)">Oui</button>
+    <button onclick="nextStep('Dysphasie_symptome_1', 0)">Non</button>
+  </div>
+
   <!-- Résultats et redirection -->
   <div id="result" style="display:none; text-align: center;">
     <h3>Résultats de votre diagnostic :</h3>
@@ -100,4 +97,59 @@ Modifier
   </div>
 
   <script>
-    let score = {TDAH: 0, Dyslexie: 0, Dyscalculie: 0, TSA: 0, Dysphasie:
+    // Variable pour suivre les réponses et le progrès
+    let answers = {
+      TDAH: 0,
+      Dyslexie: 0,
+      Dyscalculie: 0,
+      TSA: 0,
+      Dysphasie: 0
+    };
+
+    // Fonction pour passer à la question suivante
+    function nextStep(step, answer = null) {
+      if (answer !== null) {
+        answers[step] = answer;
+      }
+
+      // Masquer toutes les questions
+      const allQuestions = document.querySelectorAll('.question');
+      allQuestions.forEach((el) => {
+        el.style.display = 'none';
+      });
+
+      // Afficher la question suivante ou les résultats
+      if (step === 'result') {
+        displayResults();
+      } else {
+        document.getElementById(step).style.display = 'block';
+      }
+    }
+
+    // Fonction pour afficher les résultats
+    function displayResults() {
+      let recommendationText = '';
+      let scoreCount = 0;
+
+      // Compter les réponses et déterminer le trouble diagnostiqué
+      for (let key in answers) {
+        if (answers[key] === 1) {
+          scoreCount++;
+        }
+      }
+
+      // Si plus de 2 réponses positives, afficher la recommandation
+      if (scoreCount >= 2) {
+        recommendationText = 'Il est recommandé de consulter un professionnel de santé pour un diagnostic plus approfondi.';
+      } else {
+        recommendationText = 'Aucun trouble majeur détecté selon les réponses. Si vous avez des préoccupations, il est conseillé de consulter un spécialiste.';
+      }
+
+      // Mettre à jour l'affichage des résultats
+      document.getElementById('recommendations').innerText = recommendationText;
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

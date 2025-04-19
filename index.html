@@ -163,25 +163,24 @@
 
     // Fonction pour afficher les résultats
     function displayResults() {
-      let recommendationText = '';
-      let scoreCount = 0;
-
-      // Compter les réponses et déterminer le trouble diagnostiqué
-      for (let key in answers) {
-        if (answers[key] === 1) {
-          scoreCount++;
-        }
+      let recommendations = "Merci d'avoir répondu. Vous présentez des signes de troubles neurodéveloppementaux. ";
+      if (answers.TDAH > 1) {
+        recommendations += "Des symptômes de TDAH ont été détectés. ";
+      }
+      if (answers.Dyslexie > 1) {
+        recommendations += "Des symptômes de dyslexie ont été détectés. ";
+      }
+      if (answers.Dyscalculie > 1) {
+        recommendations += "Des symptômes de dyscalculie ont été détectés. ";
+      }
+      if (answers.TSA > 1) {
+        recommendations += "Des symptômes d'autisme (TSA) ont été détectés. ";
+      }
+      if (answers.Dysphasie > 1) {
+        recommendations += "Des symptômes de dysphasie ont été détectés. ";
       }
 
-      // Si plus de 2 réponses positives, afficher la recommandation
-      if (scoreCount >= 2) {
-        recommendationText = 'Il est recommandé de consulter un professionnel de santé pour un diagnostic plus approfondi.';
-      } else {
-        recommendationText = 'Aucun trouble majeur détecté selon les réponses. Si vous avez des préoccupations, il est conseillé de consulter un spécialiste.';
-      }
-
-      // Mettre à jour l'affichage des résultats
-      document.getElementById('recommendations').innerText = recommendationText;
+      document.getElementById('recommendations').innerText = recommendations;
       document.getElementById('result').style.display = 'block';
     }
   </script>

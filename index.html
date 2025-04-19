@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma Plateforme - Sensibilisation aux troubles Dys</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plateforme Dys - Accueil conviviale</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@0.1.1/open-dyslexic.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      font-family: 'OpenDyslexic', Arial, sans-serif;
+      background-color: #f2f7ff;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: #222;
+      line-height: 1.6;
     }
 
     header {
       background-color: #4a90e2;
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
-    main {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 0 auto;
+    header h1 {
+      font-size: 2em;
+      margin: 0;
     }
 
-    h1, h2 {
+    main {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
       color: #2c3e50;
+    }
+
+    .read-button {
+      background-color: #ffb703;
+      color: black;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
     }
 
     img {
       max-width: 100%;
       height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
     }
 
-    .dys-section {
-      text-align: center;
-      margin-top: 50px;
+    .icon {
+      font-size: 1.3em;
+      margin-right: 6px;
     }
 
     footer {
@@ -47,30 +71,64 @@
       color: white;
       text-align: center;
       padding: 15px;
-      margin-top: 60px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Bienvenue sur Ma Plateforme</h1>
-    <p>Une ressource pour mieux comprendre les troubles Dys</p>
+    <h1>Bienvenue sur la plateforme Dys</h1>
+    <p>Un espace accessible pour comprendre les troubles d'apprentissage</p>
   </header>
 
   <main>
     <section>
-      <h2>À propos</h2>
-      <p>Cette plateforme a pour objectif de sensibiliser le public aux troubles de l'apprentissage, souvent appelés "troubles Dys". Vous y trouverez des ressources, des outils et des témoignages pour mieux comprendre et accompagner les personnes concernées.</p>
+      <h2><span class="icon">📘</span>À propos</h2>
+      <p>
+        Les troubles Dys touchent la lecture (dyslexie), l'écriture (dysorthographie), le calcul (dyscalculie), la coordination (dyspraxie) et la communication (dysphasie).
+      </p>
+      <p>
+        Cette plateforme vous propose des ressources simples, visuelles et accessibles pour mieux les comprendre.
+      </p>
+      <button class="read-button" onclick="lireTexte('intro')">📢 Lire ce texte</button>
+      <div id="intro" style="display:none;">
+        Les troubles Dys touchent la lecture, l'écriture, le calcul, la coordination et la communication. Cette plateforme vous propose des ressources simples pour mieux les comprendre.
+      </div>
     </section>
 
-    <section class="dys-section">
-     
+    <section>
+      <h2><span class="icon">🧠</span>Exemple visuel - Dyslexie</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dyslexia_example.svg/800px-Dyslexia_example.svg.png"
+           alt="Exemple de perception dyslexique" />
+      <p>
+        Ce texte montre ce que peut voir une personne dyslexique. Les lettres semblent se déplacer ou se mélanger, ce qui rend la lecture difficile.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="icon">🛠️</span>Conseils pour mieux accompagner</h2>
+      <ul>
+        <li>🧩 Utiliser des polices lisibles (comme ici !)</li>
+        <li>📄 Aérer les textes, utiliser des listes et des images</li>
+        <li>🎧 Proposer une lecture audio</li>
+        <li>🖍️ Adapter les supports aux besoins spécifiques</li>
+      </ul>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Ma Plateforme - Tous droits réservés</p>
+    &copy; 2025 Plateforme Dys - Tous droits réservés
   </footer>
 
+  <script>
+    function lireTexte(id) {
+      const texte = document.getElementById(id).innerText;
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(texte);
+      utterance.lang = 'fr-FR';
+      synth.speak(utterance);
+    }
+  </script>
 </body>
 </html>

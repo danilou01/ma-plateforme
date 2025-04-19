@@ -1,27 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnostic Troubles Dys</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Plateforme - Sensibilisation aux troubles Dys</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .dys-section {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Chatbot Diagnostic Troubles Dys</h1>
-        <div id="login-form">
-            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-            <input type="password" id="password" placeholder="Mot de passe" required>
-            <button onclick="login()">Se connecter</button>
-            <p id="login-error"></p>
-        </div>
-        <div id="app" style="display:none;">
-            <textarea id="difficulties" placeholder="Décrivez vos difficultés..." rows="4" cols="50"></textarea>
-            <button onclick="diagnoseText()">Analyser</button>
-            <div id="result"></div>
-            <button onclick="useVoice()">Activer la reconnaissance vocale</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+  <header>
+    <h1>Bienvenue sur Ma Plateforme</h1>
+    <p>Une ressource pour mieux comprendre les troubles Dys</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>À propos</h2>
+      <p>Cette plateforme a pour objectif de sensibiliser le public aux troubles de l'apprentissage, souvent appelés "troubles Dys". Vous y trouverez des ressources, des outils et des témoignages pour mieux comprendre et accompagner les personnes concernées.</p>
+    </section>
+
+    <section class="dys-section">
+      <h2>Exemple de représentation d'un trouble Dys</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Dyslexia_example.svg/800px-Dyslexia_example.svg.png" 
+           alt="Exemple de texte vu par une personne dyslexique">
+      <p style="max-width: 700px; margin: 20px auto; font-size: 1.1em;">
+        Voici une illustration de ce que peut percevoir une personne atteinte de <strong>dyslexie</strong>. Les lettres peuvent sembler bouger ou se superposer, ce qui rend la lecture difficile. Cette plateforme vise à mieux faire connaître ces défis et à proposer des solutions d'accompagnement.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ma Plateforme - Tous droits réservés</p>
+  </footer>
+
 </body>
 </html>
